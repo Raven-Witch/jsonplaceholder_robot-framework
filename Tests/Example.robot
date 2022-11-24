@@ -2,7 +2,7 @@
 # Run =
 # robot -d Results tests/Example.robot
 *** Settings ***
-Documentation    Mein erster Robot Framework Test
+Documentation    My first Robot Framework test Suite
 Library    JSONLibrary
 Library    RequestsLibrary
 Library    Collections
