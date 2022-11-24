@@ -19,7 +19,8 @@ JsonPlaceholderApp.GET post 1 should return a post
     JsonPlaceholderApp.Compare Result Dictionary with defiened values  ${response}
 
 JsonPlaceholderApp.GET post 1 comments
-    PostsPO.GET post 1 comments
+    [Arguments]    ${sessionname}
+    ${response}=    PostsPO.GET post 1 comments   ${sessionname}
 
 JsonPlaceholderApp.POST posts
     PostsPO.POST posts

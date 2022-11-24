@@ -17,7 +17,10 @@ PostsPO.GET post 1
     RETURN    ${response.json()}
 
 PostsPO.GET post 1 comments
-    no operation
+    [Arguments]    ${sessionname}
+    ${response}=    GET On Session    ${sessionname}   /posts/1/comments
+    Status Should Be    200     ${response}
+    RETURN    ${response.json()}
 
 PostsPO.POST posts
     no operation
