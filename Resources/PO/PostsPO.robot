@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Pageobject for the Posts in the demo rest service
 Library    RequestsLibrary
+Library    Collections
 
 *** Keywords ***
 PostsPO.GET posts
@@ -10,7 +11,10 @@ PostsPO.GET posts
     RETURN    ${response.json()}
 
 PostsPO.GET post 1
-    no operation
+    [Arguments]    ${sessionname}
+    ${response}=    GET On Session    ${sessionname}   /posts/1
+    Status Should Be    200     ${response}
+    RETURN    ${response.json()}
 
 PostsPO.GET post 1 comments
     no operation
@@ -26,3 +30,4 @@ PostsPO.PATCH post 1
 
 PostsPO.DELETE post 1
     no operation
+
