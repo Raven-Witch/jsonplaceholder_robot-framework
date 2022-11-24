@@ -11,25 +11,12 @@ JsonPlaceholderApp.GET posts should return a list of posts
     [Arguments]    ${sessionname}
     ${response}=    PostsPO.GET posts   ${sessionname}
     ${first_item}=  Commons.Convert first item in Responselist to Dictionary    ${response}
+    JsonPlaceholderApp.Compare Result Dictionary with defiened values  ${first_item}
 
-    dictionary should contain key   ${first_item}    userId
-    dictionary should contain key   ${first_item}    id
-    dictionary should contain key   ${first_item}    title
-    dictionary should contain key   ${first_item}    body
-
-JsonPlaceholderApp.Convert first item in Responselist to Dictionary
-    [Arguments]    ${response}
-    ${list}=    convert to list    ${response}
-    ${dict}=    convert to dictionary    ${list}[0]
-    RETURN    ${dict}
-
-JsonPlaceholderApp.Convert Response to Dict
-    [Arguments]    ${response}
-    ${dict}=    convert to dictionary    ${response}
-    RETURN    ${dict}
-
-JsonPlaceholderApp.GET post 1
-    PostsPO.GET post 1
+JsonPlaceholderApp.GET post 1 should return a post
+    [Arguments]    ${sessionname}
+    ${response}=    PostsPO.GET post 1   ${sessionname}
+    JsonPlaceholderApp.Compare Result Dictionary with defiened values  ${response}
 
 JsonPlaceholderApp.GET post 1 comments
     PostsPO.GET post 1 comments
@@ -45,3 +32,16 @@ JsonPlaceholderApp.PATCH post 1
 
 JsonPlaceholderApp.DELETE post 1
     PostsPO.DELETE post 1
+
+JsonPlaceholderApp.Compare Result Dictionary with defiened values
+    [Arguments]    ${dict}
+    ${expected_userId}=  convert to number    1
+    ${expected_id}=      convert to number    1
+    ${expected_title}=   convert to string    sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+    ${expected_body}=    convert to string    quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto
+
+    dictionary should contain item      ${dict}    userId    ${expected_userId}
+    dictionary should contain item      ${dict}    id        ${expected_id}
+    dictionary should contain item      ${dict}    title        ${expected_title}
+    dictionary should contain item      ${dict}    body        ${expected_body}
+
