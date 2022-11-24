@@ -23,4 +23,4 @@ Do a GET Request and validate the Response
 
 Do a GET Request for id 1 and validate the Response
     [Tags]    posts     get
-    JsonPlaceholderApp.GET post 1 shouuld return a post    ${SESSION_NAME}
+    JsonPlaceholderApp.GET post 1 should return a post    ${SESSION_NAME}
