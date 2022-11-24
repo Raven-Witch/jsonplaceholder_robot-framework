@@ -17,6 +17,10 @@ Test Setup    Create Session    ${SESSION_NAME}   https://jsonplaceholder.typico
 ${SESSION_NAME}=    excamplesession
 
 *** Test Cases ***
-Do a GET Request and validate the Response Code
-    [Tags]    posts
+Do a GET Request and validate the Response
+    [Tags]    posts     get
     JsonPlaceholderApp.GET posts should return a list of posts    ${SESSION_NAME}
+
+Do a GET Request for id 1 and validate the Response
+    [Tags]    posts     get
+    JsonPlaceholderApp.GET post 1 shouuld return a post    ${SESSION_NAME}
