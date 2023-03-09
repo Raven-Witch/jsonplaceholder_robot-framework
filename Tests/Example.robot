@@ -3,16 +3,17 @@
 # robot -d Results tests/Example.robot
 *** Settings ***
 Documentation    My first Robot Framework test Suite
-Library    JSONLibrary
+#Library    JSONLibrary
 Library    RequestsLibrary
 Library    Collections
 
 Resource    ../Resources/JsonPlaceholderApp.robot
 Resource    ../Resources/Commons.robot
+Resource    ../Resources/TestSetup.robot
 
 
 
-Test Setup    Create Session    ${SESSION_NAME}   https://jsonplaceholder.typicode.com
+#Test Setup    Create Session    ${SESSION_NAME}   https://jsonplaceholder.typicode.com
 *** Variables ***
 ${SESSION_NAME}=    excamplesession
 
